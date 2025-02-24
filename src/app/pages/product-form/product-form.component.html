@@ -1,1 +1,22 @@
-<p>product-form works!</p>
+<h2>Add a New Product</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="id">ID:</label>
+    <input id="id" formControlName="id" />
+  </div>
+
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input id="price" formControlName="price" />
+  </div>
+
+  <button type="submit">Add Product</button>
+  <button routerLink="/list">Product List</button>
+</form>
+

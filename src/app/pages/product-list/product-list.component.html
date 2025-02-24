@@ -1,1 +1,21 @@
-<p>product-list works!</p>
+<div class="container">
+  <h2>{{ editMode ? 'Update' : 'Add' }} Product</h2>
+
+  <form (submit)="onSubmit()">
+    <input type="number" [(ngModel)]="product.id" name="productId" placeholder="Product ID" required />
+    <input type="text" [(ngModel)]="product.name" name="productName" placeholder="Product Name" required />
+    <input type="number" [(ngModel)]="product.price" name="productPrice" placeholder="Product Price (Ksh)" required />
+    <button type="submit">{{ editMode ? 'Update' : 'Add' }} Product</button>
+  </form>
+
+  <h2>Product List</h2>
+  <ul>
+    <li *ngFor="let product of products">
+      <strong>ID:</strong> {{ product.id }} - 
+      <strong>Name:</strong> {{ product.name }} - 
+      <strong>Price:</strong> Ksh {{ product.price }}
+      <button (click)="editProduct(product)">Edit</button>
+      <button (click)="deleteProduct(product.id)">Delete</button>
+    </li>
+  </ul>
+</div>
