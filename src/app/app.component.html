@@ -1,2 +1,10 @@
-<router-outlet />
-<app-product-list></app-product-list>
+<div class="container">
+    <h1>Welcome, <span class="highlight">{{ userName }}</span></h1>
+    <h2 class="title">Product Management System</h2>
+    
+    <!-- Stylish button for navigation -->
+    <button routerLink="/list" class="btn-primary">Go to Products</button>
+  </div>
+  
+
+<router-outlet></router-outlet>

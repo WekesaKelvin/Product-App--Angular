@@ -1,21 +1,42 @@
 <div class="container">
   <h2>{{ editMode ? 'Update' : 'Add' }} Product</h2>
 
-  <form (submit)="onSubmit()">
-    <input type="number" [(ngModel)]="product.id" name="productId" placeholder="Product ID" required />
-    <input type="text" [(ngModel)]="product.name" name="productName" placeholder="Product Name" required />
-    <input type="number" [(ngModel)]="product.price" name="productPrice" placeholder="Product Price (Ksh)" required />
-    <button type="submit">{{ editMode ? 'Update' : 'Add' }} Product</button>
+  <form #productForm="ngForm" (ngSubmit)="onSubmit()">
+    
+    <div>
+      <label for="id">ID:</label>
+      <input id="id" type="number" [(ngModel)]="product.id" name="productId" required #idInput="ngModel" />
+      <div class="error" *ngIf="idInput.invalid && idInput.touched">Product ID is required.</div>
+    </div>
+
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" [(ngModel)]="product.name" name="productName" required #nameInput="ngModel" />
+      <div class="error" *ngIf="nameInput.invalid && nameInput.touched">Product Name is required.</div>
+    </div>
+
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" type="number" [(ngModel)]="product.price" name="productPrice" required min="1" #priceInput="ngModel" />
+      <div class="error" *ngIf="priceInput.invalid && priceInput.touched">
+        Price must be a positive number.
+      </div>
+    </div>
+
+    
+    <button type="submit" class="add-btn" [disabled]="productForm.invalid">
+      {{ editMode ? 'Update' : 'Add' }} Product
+    </button>
   </form>
 
   <h2>Product List</h2>
   <ul>
     <li *ngFor="let product of products">
-      <strong>ID:</strong> {{ product.id }} - 
-      <strong>Name:</strong> {{ product.name }} - 
-      <strong>Price:</strong> Ksh {{ product.price }}
-      <button (click)="editProduct(product)">Edit</button>
-      <button (click)="deleteProduct(product.id)">Delete</button>
+      <span><strong>ID:</strong> {{ product.id }} - <strong>Name:</strong> {{ product.name }} - <strong>Price:</strong> Ksh {{ product.price }}</span>
+      <div>
+        <button class="edit-btn" (click)="editProduct(product)">Edit</button>
+        <button class="delete-btn" (click)="deleteProduct(product.id)">Delete</button>
+      </div>
     </li>
   </ul>
 </div>

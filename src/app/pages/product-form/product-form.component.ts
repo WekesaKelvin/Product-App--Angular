@@ -7,7 +7,7 @@ import { Product } from '../../product.model';
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Import needed modules for reactive forms
+  imports: [CommonModule, ReactiveFormsModule], 
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
@@ -18,7 +18,7 @@ export class ProductFormComponent {
     private fb: FormBuilder,
     private productService: ProductService
   ) {
-    // Initialize the reactive form
+    // Initializing the reactive form
     this.productForm = this.fb.group({
       id: [0],
       name: [''],
@@ -28,10 +28,10 @@ export class ProductFormComponent {
 
   onSubmit() {
     const newProduct: Product = this.productForm.value;
-    // Add the new product
+    // Adds the new product
     this.productService.addProduct(newProduct);
 
-    // Reset the form to blank
+    // Resets the form to blank
     this.productForm.reset({ id: 0, name: '', price: 0 });
   }
 }
