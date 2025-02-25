@@ -1,19 +1,19 @@
-<div class="form-container">
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <h2>Add a New Product</h2>
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <h2>Add a New Product</h2>
 
-    <label for="id">ID:</label>
-    <input id="id" formControlName="id" placeholder="Enter Product ID" />
+      <label for="id">ID:</label>
+      <input id="id" formControlName="id" placeholder="Enter Product ID" />
 
-    <label for="name">Name:</label>
-    <input id="name" formControlName="name" placeholder="Enter Product Name" />
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" placeholder="Enter Product Name" />
 
-    <label for="price">Price:</label>
-    <input id="price" formControlName="price" placeholder="Enter Price" />
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" placeholder="Enter Price" />
 
-    <button type="submit">Add Product</button>
-    <button [routerLink]="['/list']" class="btn-primary">Product List</button>
-
-   
-  </form>
+      <button type="submit">Add Product</button>
+      <button type="button" [routerLink]="['/list']" class="btn-primary">Product List</button>
+    </form>
+  </div>
 </div>
