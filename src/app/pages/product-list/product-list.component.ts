@@ -48,7 +48,7 @@ export class ProductListComponent implements OnInit {
   // Delete Product
   deleteProduct(productId: number): void {
     this.productService.deleteProduct(productId);
-    this.loadProducts(); // Refresh the list
+    this.loadProducts(); 
   }
 
   // Reset Form

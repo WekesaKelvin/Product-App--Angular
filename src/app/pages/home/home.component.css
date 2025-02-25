@@ -1,5 +1,5 @@
 .container {
-    background-image: url('/assets/1Park-New.webp'); /* Add a leading '/' */
+    background-image: url('/assets/1Park-New.webp'); 
 
     background-size: cover;
     background-position: center;
@@ -15,9 +15,9 @@
 .container {
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; /* Ensure no repeating */
+    background-repeat: no-repeat; 
     height: 100vh;
-    width: 100vw; /* Ensure full width */
+    width: 100vw; 
     display: flex;
     flex-direction: column;
     justify-content: center;
