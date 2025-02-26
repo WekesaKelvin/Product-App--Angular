@@ -1,117 +1,103 @@
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 20px;
+/* Use the same full-page background style as your product-form */
+.container {
+  background-image: url('/assets/1Park-New.webp'); /* Adjust path if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-
-.container {
-  max-width: 500px;
-  justify-content: center;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
   text-align: center;
 }
 
+/* A wrapper for your table or list content */
+.table-container {
+  background: rgba(106, 168, 209, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;           /* Adjust as needed */
+  max-width: 800px;     /* Constrain maximum width */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-h2 {
-  color: #004A99;
+/* Headings inside the container */
+.table-container h2 {
+  margin: 0;
   margin-bottom: 15px;
 }
 
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background: #f4f4f4;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 0.2s ease-in-out;
-}
-
-li:hover {
-  transform: scale(1.02);
-  background: #e8e8e8;
-}
-
-
-button {
-  padding: 8px 12px;
-  margin-left: 10px;
-  cursor: pointer;
+/* "Add New Product" button */
+.add-button {
+  background: #004A99;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;       /* Some spacing above/below the button */
   border: none;
   border-radius: 5px;
+  cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-button:hover {
-  transform: scale(1.05);
+.add-button:hover {
+  background: #003366;
 }
 
+/* Basic table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  color: white; /* Ensures text is visible against the bluish background */
+}
+
+/* Table header row */
+th {
+  background-color: #004A99;
+}
+
+/* Hover effect on table rows */
+tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Edit button (green) */
 .edit-btn {
   background: #28a745;
   color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-weight: bold;
 }
 
 .edit-btn:hover {
   background: #218838;
 }
 
-
+/* Delete button (red) */
 .delete-btn {
   background: #dc3545;
   color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .delete-btn:hover {
   background: #c82333;
 }
-
-
-form {
-  background: rgba(106, 168, 209, 0.9);
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.add-btn {
-  background: #004A99;
-  color: white;
-}
-
-.add-btn:hover {
-  background: #003366;
-}
-error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
