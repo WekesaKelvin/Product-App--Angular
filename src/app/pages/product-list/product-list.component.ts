@@ -1,9 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // <-- Import RouterModule to enable [routerLink]
+import { RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';  
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../product.model';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';  // <-- Import
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +18,11 @@ import { Product } from '../../product.model';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  // Inject MatDialog
+  constructor(
+    private productService: ProductService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -26,7 +33,23 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(productId: number): void {
-    this.productService.deleteProduct(productId);
-    this.loadProducts();
+    // Open the custom confirm dialog
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',    
+      data: {
+        title: 'Confirm Delete',
+        message: 'Are you sure you want to delete this product?'
+      }
+    });
+
+    // After the dialog is closed, we get the result
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        // User clicked "Yes"
+        this.productService.deleteProduct(productId);
+        this.loadProducts();
+      }
+      // If "No", nothing
+    });
   }
 }
