@@ -23,10 +23,11 @@
               <p class="card-text">Price: {{ product.price | currency:'KES ':'symbol':'1.2-2' }}</p>
               <div class="d-fle">
                 <div class="flex gap-2">
-                  <button mat-raised-button color="accent" (click)="editProduct(product.id)">
+                  <button mat-raised-button class="custom-primary" (click)="editProduct(product.id)">
                     <mat-icon class="me-1">edit</mat-icon> Edit
                   </button>
-                  <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">
+                  
+                  <button mat-raised-button class="custom-accent" (click)="deleteProduct(product.id)">
                     <mat-icon class="me-1">delete</mat-icon> Delete
                   </button>
                 </div>
