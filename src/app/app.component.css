@@ -1,0 +1,35 @@
+/* Center everything */
+.container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Styling for "Welcome, [Name]" */
+  .highlight {
+    color: #ff5733;
+    font-weight: bold;
+  }
+  
+  /* Stylish heading */
+  .title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Stylish button */
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,47 @@
+@if(products$ | async; as products){
+  <div class="background-wrapper">
+  <div class="container">
+    <!-- Header -->
+    <h2 class="text-center mb-4">Product List</h2>
+
+    <!-- Add New Product Button -->
+    <div class="center-button">
+      <button mat-fab extended color="primary" [routerLink]="['/form']">
+        <mat-icon>add_shopping_cart</mat-icon> Add New Product
+      </button>
+    </div>
+    
+
+    <!-- Product Cards -->
+    <div class="row">
+      @for(product of products; track product.id){
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card product-card">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">ID: {{ product.id }}</p>
+              <p class="card-text">Price: {{ product.price | currency:'KES ':'symbol':'1.2-2' }}</p>
+              <div class="d-fle">
+                <div class="flex gap-2">
+                  <button mat-raised-button color="accent" (click)="editProduct(product.id)">
+                    <mat-icon class="me-1">edit</mat-icon> Edit
+                  </button>
+                  <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">
+                    <mat-icon class="me-1">delete</mat-icon> Delete
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      @empty {
+        <div class="col-12 text-center">
+          <p class="text-muted">No products available.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+}

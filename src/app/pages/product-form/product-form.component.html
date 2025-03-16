@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="form-container">
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <h2>{{ productId ? 'Edit' : 'Add' }} Product</h2>
+
+      <label for="id">ID:</label>
+      <input id="id" formControlName="id" placeholder="Enter Product ID" />
+      
+
+      <label for="name">Name:</label>
+      
+      <input id="name" formControlName="name" placeholder="Enter Product Name" />
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="error">
+        Product name must be at least 2 characters.
+      </div>
+
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" placeholder="Enter Price" />
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="error">
+        Price must be greater than 0.
+      </div>
+
+
+    <!-- Enhanced Buttons -->
+      <div class="d-flex gap-3 mt-4 justify-content-center">
+
+        <!-- ADD/UPDATE Button -->
+        <button mat-raised-button color="accent" type="submit" class="add-btn">
+          <mat-icon class="me-2">add_circle</mat-icon> 
+          {{ productId ? 'Update Product' : 'Add Product' }}
+        </button>
+
+        <!-- BACK Button -->
+        <button mat-stroked-button color="warn" [routerLink]="['/list']" type="button" class="back-btn">
+          <mat-icon class="me-2">arrow_back_ios_new</mat-icon>
+          {{ productId ? 'Back' : 'Product List' }}
+        </button>
+        
+      </div>
+
+    </form>
+  </div>
+</div>
