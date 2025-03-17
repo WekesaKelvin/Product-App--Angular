@@ -8,25 +8,25 @@
   background-image: url('/assets/IM-Banka.webp');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;justify-content: center; /* centers container horizontally */
-  align-items: flex-start;  /* aligns container to top */
-  padding-top: 40px; /* spacing from top */
-  padding-bottom: 40px; /* spacing from bottom */
+  background-attachment: fixed;justify-content: center; 
+  align-items: flex-start;  
+  padding-top: 40px; 
+  padding-bottom: 40px; 
 
 }
 
-/* 2. Container settings: transparent white overlay + centered */
+
 .container {
   max-width: 900px;
   margin: 40px auto;
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.4);
- /* White overlay with transparency */
+
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* 3. Heading styling */
+
 h2 {
   color: #1e3c72;
   font-weight: bold;
@@ -35,7 +35,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* 4. Center Add button */
+
 .center-button {
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* 5. Product Card styling */
+
 .product-card {
   background-color: #6aa8d1;
   color: black;
@@ -87,13 +87,13 @@ button:hover {
   font-size: 1rem;
 }
 .d-flex.justify-content-between {
-  gap: 50px; /* Adds space between buttons */
+  gap: 50px; 
 }
 
 
 
 .btn mat-icon {
-  margin-right: 4px; /* Adds space between icon and text */
+  margin-right: 4px; 
 }
 button[mat-raised-button] {
   border-radius: 12px;
@@ -101,7 +101,7 @@ button[mat-raised-button] {
 }
 
 
-/* Buttons */
+
 .btn-primary {
   background-color: #1e3c72;
   border-color: #1e3c72;
