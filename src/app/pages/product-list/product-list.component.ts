@@ -11,6 +11,7 @@ import { ProductService } from '../../services/product.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -29,20 +30,20 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  editProduct(productId: number): void {
+    this.router.navigate(['/form', productId]);
+  }
+
   products$!: Observable<Product[]>;
   
   storeService = inject(ProductService);
   dialog = inject(MatDialog);
   snackBar = inject(MatSnackBar);
-  router: any;
+  router = inject(Router);
   
 
   ngOnInit(): void {
     this.products$ = this.storeService.getProducts$();
-  }
-  editProduct(productId: number): void {
-    // For example, navigate to edit page
-    this.router.navigate(['form/:id', productId]);
   }
   
 

@@ -9,6 +9,7 @@ import { Action } from '@ngrx/store';
   providedIn: 'root'
 })
 export class ProductService {
+  product: any;
   dispatch(arg0: { productId: number; } & Action<"[Product] Delete Product">) {
     throw new Error('Method not implemented.');
   }
@@ -65,37 +66,4 @@ export class ProductService {
 }
 
 
-  // For real HTTP calls 
-  /*
-  constructor(private http: HttpClient) {}
-  private apiUrl = '/api/products';
-
-  getProducts$(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl).pipe(
-      catchError(error => {
-        console.error('Error fetching products', error);
-        return throwError(error);
-      })
-    );
-  }
-
-  addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product).pipe(
-      catchError(error => throwError(error))
-    );
-  }
-
-  updateProduct(updated: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/${updated.id}`, updated).pipe(
-      catchError(error => throwError(error))
-    );
-  }
-
-  deleteProduct(id: number): Observable<boolean> {
-    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
-      map(() => true),
-      catchError(error => throwError(error))
-    );
-  }
-  */
-
+  
