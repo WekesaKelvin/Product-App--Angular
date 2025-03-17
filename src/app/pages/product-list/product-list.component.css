@@ -8,34 +8,54 @@
   background-image: url('/assets/IM-Banka.webp');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;justify-content: center; /* centers container horizontally */
-  align-items: flex-start;  /* aligns container to top */
-  padding-top: 40px; /* spacing from top */
-  padding-bottom: 40px; /* spacing from bottom */
-
+  background-attachment: fixed;justify-content: center; 
+  align-items: flex-start;  
+  padding-top: 40px; 
+  padding-bottom: 40px; 
 }
 
-/* 2. Container settings: transparent white overlay + centered */
 .container {
+  background-image: url('/assets/1Park-New.webp');
+  background-size: cover;
+  background-position: center;
+  position: relative;
   max-width: 900px;
   margin: 40px auto;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.4);
- /* White overlay with transparency */
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly darker shadow */
+
+  /* Overlay effect */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* white overlay */
+    z-index: 1;
+  }
+
+  /* Ensure content appears above overlay */
+  > * {
+    position: relative;
+    z-index: 2;
+  }
 }
 
-/* 3. Heading styling */
+
+
 h2 {
-  color: #1e3c72;
+  color: #000000;
   font-weight: bold;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* 4. Center Add button */
+
 .center-button {
   display: flex;
   justify-content: center;
@@ -43,22 +63,39 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* 5. Product Card styling */
+
 .product-card {
-  background-color: #6aa8d1;
+  background-color: rgba(68, 119, 153, 0.05);
   color: black;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
-  height: 100%;
+  width: 500px; 
+  margin: 0 auto; 
+  padding: 1rem; 
+  margin-bottom: 20px;
 }
 .d-flex button {
   margin-right: 15px;
+}
+.logo-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 10; 
+  margin-top: 10px;
+}
+
+.logo-img {
+  width: 50px; 
+  height: auto;
+  object-fit: contain;
 }
 
 
 .product-card:hover {
   transform: scale(1.03);
+  background-color: rgb(108, 117, 90);
 }
 
 .card-title {
@@ -87,13 +124,13 @@ button:hover {
   font-size: 1rem;
 }
 .d-flex.justify-content-between {
-  gap: 50px; /* Adds space between buttons */
+  gap: 50px; 
 }
 
 
 
 .btn mat-icon {
-  margin-right: 4px; /* Adds space between icon and text */
+  margin-right: 4px; 
 }
 button[mat-raised-button] {
   border-radius: 12px;
@@ -101,7 +138,7 @@ button[mat-raised-button] {
 }
 
 
-/* Buttons */
+
 .btn-primary {
   background-color: #1e3c72;
   border-color: #1e3c72;
@@ -125,4 +162,8 @@ button[mat-raised-button] {
 .gap-2{
   gap: 15px;
   display: flex;
+}
+.card-body{
+
+  padding-left: 20px;
 }

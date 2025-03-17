@@ -34,11 +34,17 @@ export class ProductListComponent implements OnInit {
   storeService = inject(ProductService);
   dialog = inject(MatDialog);
   snackBar = inject(MatSnackBar);
-editProduct: any;
+  router: any;
+  
 
   ngOnInit(): void {
     this.products$ = this.storeService.getProducts$();
   }
+  editProduct(productId: number): void {
+    // For example, navigate to edit page
+    this.router.navigate(['form/:id', productId]);
+  }
+  
 
   deleteProduct(productId: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
