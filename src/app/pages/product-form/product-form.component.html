@@ -22,16 +22,16 @@
       </div>
 
 
-    <!-- Enhanced Buttons -->
+    
       <div class="d-flex gap-3 mt-4 justify-content-center">
 
-        <!-- ADD/UPDATE Button -->
+      
         <button mat-raised-button color="accent" type="submit" class="add-btn">
           <mat-icon class="me-2">add_circle</mat-icon> 
           {{ productId ? 'Update Product' : 'Add Product' }}
         </button>
 
-        <!-- BACK Button -->
+  
         <button mat-stroked-button color="warn" [routerLink]="['/list']" type="button" class="back-btn">
           <mat-icon class="me-2">arrow_back_ios_new</mat-icon>
           {{ productId ? 'Back' : 'Product List' }}
