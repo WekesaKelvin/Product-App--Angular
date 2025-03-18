@@ -102,6 +102,12 @@ h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
 }
+
+.card-text {
+  font-size: 1.75rem; 
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 .edit-btn {
   background: linear-gradient(45deg, #4caf50, #8bc34a);
   color: white;
