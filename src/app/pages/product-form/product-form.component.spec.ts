@@ -147,8 +147,8 @@ describe('ProductFormComponent', () => {
     const invalidData = { id: 0, name: 'A', price: 0 }; // invalid data
     component.productForm.patchValue(invalidData);
   
-    component.onSubmit(); // Try to submit
-    tick(); // Allow any async tasks (if any) to complete
+    component.onSubmit(); 
+    tick(); 
     fixture.detectChanges();
   
     // Expect product service methods NOT to be called

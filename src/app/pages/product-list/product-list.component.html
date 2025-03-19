@@ -1,51 +1,46 @@
-@if(products$ | async; as products){
+@if (products$ | async; as products) {
   <div class="background-wrapper">
     <div class="logo-wrapper">
       <img src="/assets/im-bank-logo.png" alt="Logo" class="logo-img">
     </div>
-  <div class="container">
-    <!-- Header -->
-    <h2 class="text-center mb-4">Product List</h2>
+    <div class="container">
+      <!-- Header -->
+      <h2 class="header-title">Product List</h2>
 
-    <!-- Add New Product Button -->
-    <div class="center-button">
-      <button mat-fab extended color="primary" [routerLink]="['/form']">
-        <mat-icon>add_shopping_cart</mat-icon> Add New Product
-      </button>
-    </div>
-    
+      <!-- Add New Product Button -->
+      <div class="action-bar">
+        <button mat-fab extended color="primary" [routerLink]="['/form']" class="add-button">
+          <mat-icon>add</mat-icon> Add New Product
+        </button>
+      </div>
 
-    <!-- Product Cards -->
-    <div class="row">
-      @for(product of products; track product.id){
-        <div class="col-md-4 col-sm-6 mb-4">
-          <div class="card product-card">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">ID: {{ product.id }}</p>
-              <p class="card-text">Price: {{ product.price | currency:'KES ':'symbol':'1.2-2' }}</p>
-              <div class="d-fle">
-                <div class="flex gap-2">
-                  <button mat-raised-button class="custom-primary" (click)="editProduct(product.id)">
-                    <mat-icon class="me-1">edit</mat-icon> Edit
-                  </button>
-                  
-                  <button mat-raised-button class="custom-accent" (click)="deleteProduct(product.id)">
-                    <mat-icon class="me-1">delete</mat-icon> Delete
-                  </button>
-                </div>
-                
+      <!-- Product Cards -->
+      <div class="card-grid">
+        @for (product of products; track product.id) {
+          <div class="card-wrapper">
+            <div class="product-card">
+              <div class="card-content">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-id">ID: {{ product.id }}</p>
+                <p class="product-price">{{ product.price | currency:'KES ':'symbol':'1.2-2' }}</p>
+              </div>
+              <div class="card-actions">
+                <button mat-raised-button color="primary" (click)="editProduct(product.id)" class="action-button edit-button">
+                  <mat-icon>edit</mat-icon> Edit
+                </button>
+                <button mat-raised-button color="warn" (click)="deleteProduct(product.id)" class="action-button delete-button">
+                  <mat-icon>delete</mat-icon> Delete
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      }
-      @empty {
-        <div class="col-12 text-center">
-          <p class="text-muted">No products available.</p>
-        </div>
-      }
+        }
+        @empty {
+          <div class="no-products">
+            <p class="text-muted">No products available.</p>
+          </div>
+        }
+      </div>
     </div>
   </div>
-</div>
 }
