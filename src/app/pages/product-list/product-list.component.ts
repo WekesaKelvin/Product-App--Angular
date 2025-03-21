@@ -28,25 +28,34 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     MatCardModule
   ],
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  animations: [ // ✅ Correct place
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter', [
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('0.5s ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ProductListComponent implements OnInit {
-  editProduct(productId: number): void {
-    this.router.navigate(['/form', productId]);
-  }
-
   products$!: Observable<Product[]>;
   
   storeService = inject(ProductService);
   dialog = inject(MatDialog);
   snackBar = inject(MatSnackBar);
   router = inject(Router);
-  
 
   ngOnInit(): void {
     this.products$ = this.storeService.getProducts$();
   }
-  
+
+  editProduct(productId: number): void {
+    this.router.navigate(['/form', productId]);
+  }
 
   deleteProduct(productId: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -56,18 +65,6 @@ export class ProductListComponent implements OnInit {
         message: 'Are you sure you want to delete this product?'
       }
     });
-
-    animations: [
-      trigger('fadeInOut', [
-        state('void', style({ opacity: 0 })),
-        transition(':enter', [
-          animate('0.5s ease-in', style({ opacity: 1 }))
-        ]),
-        transition(':leave', [
-          animate('0.5s ease-out', style({ opacity: 0 }))
-        ])
-      ])
-    ]
 
     dialogRef.afterClosed().pipe(take(1)).subscribe((confirmed: boolean) => {
       if (confirmed) {
