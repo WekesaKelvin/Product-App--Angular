@@ -1,23 +1,27 @@
 @if (products$ | async; as products) {
   <div class="background-wrapper">
+    <!-- Gradient Overlay -->
+    <div class="background-overlay"></div>
+  
     <div class="logo-wrapper">
       <img src="/assets/im-bank-logo.png" alt="Logo" class="logo-img">
     </div>
+  
     <div class="container">
       <!-- Header -->
       <h2 class="header-title">Product List</h2>
-
+  
       <!-- Add New Product Button -->
-      <div class="action-bar">
-        <button mat-fab extended color="primary" [routerLink]="['/form']" class="add-button">
-          <mat-icon>add</mat-icon> Add New Product
-        </button>
-      </div>
+      <button mat-button [routerLink]="['/form']" class="add-button">
+        <mat-icon>shopping_cart</mat-icon>
+        Add New Product
+      </button>
+      
 
       <!-- Product Cards -->
       <div class="card-grid">
-        @for (product of products; track product.id) {
-          <div class="card-wrapper">
+        @for (product of products; track product.id; let i = $index) {
+          <div class="card-wrapper" [@fadeInOut] [style.animation-delay]="i * 0.1 + 's'">
             <div class="product-card">
               <div class="card-content">
                 <h3 class="product-name">{{ product.name }}</h3>

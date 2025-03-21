@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-product-list',
@@ -55,6 +56,18 @@ export class ProductListComponent implements OnInit {
         message: 'Are you sure you want to delete this product?'
       }
     });
+
+    animations: [
+      trigger('fadeInOut', [
+        state('void', style({ opacity: 0 })),
+        transition(':enter', [
+          animate('0.5s ease-in', style({ opacity: 1 }))
+        ]),
+        transition(':leave', [
+          animate('0.5s ease-out', style({ opacity: 0 }))
+        ])
+      ])
+    ]
 
     dialogRef.afterClosed().pipe(take(1)).subscribe((confirmed: boolean) => {
       if (confirmed) {

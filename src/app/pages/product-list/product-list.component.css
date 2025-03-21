@@ -1,20 +1,31 @@
 .background-wrapper {
   min-height: 100vh;
   width: 100%;
+  position: relative;
   background: linear-gradient(135deg, #1e3c72, #2a5298); /* Gradient inspired by the image */
-  padding: 60px 20px;
+  padding: 80px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(30, 60, 114, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
 
 .logo-wrapper {
   position: absolute;
   top: 20px;
   left: 20px;
-  z-index: 10;
+  z-index: 3;
 }
 
 .logo-img {
@@ -26,15 +37,27 @@
 .container {
   position: relative;
   max-width: 1200px;
-  width: 100%;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for a clean look */
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  z-index: 2;
+  width: 95%;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 3;
   background-image: url('/assets/1Park-New.webp');
   background-size: cover;
   background-position: center;
+  animation: fadeInUp 1s ease-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header-title {
@@ -55,17 +78,35 @@
 }
 
 .add-button {
-  background: linear-gradient(45deg, #11fc19, #66bb6a);
+  background: linear-gradient(45deg, #0da512, #8ed291);
   color: white;
-  font-weight: 500;
-  border-radius: 25px;
-  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 12px 24px;
   transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+.add-button mat-icon {
+  font-size: 20px;
 }
 
 .add-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .header-title {
+    font-size: 1.6rem;
+  }
+
+  .add-button {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .card-grid {
@@ -77,18 +118,58 @@
 
 .card-wrapper {
   perspective: 1000px;
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .product-card {
-  background: hsla(220, 9%, 46%, 0.8); /* Olive green inspired by the image */
-  border-radius: 10px;
+  background: rgba(46, 49, 65, 0.75); /* Glass effect background */
+  border-radius: 15px;
   padding: 20px;
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+  backdrop-filter: blur(10px); /* Glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: 0;
+  background: linear-gradient(45deg, #00ff99, #00ccff, #ff3399, #ffcc00);
+  background-size: 400% 400%;
+  border-radius: 15px;
+  opacity: 0.5;
+  animation: gradientBorder 6s ease infinite;
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
 .product-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -97,12 +178,17 @@
 .card-content {
   padding: 10px 0;
 }
-
+.card-content, .card-actions {
+  position: relative;
+  z-index: 1;
+}
 .product-name {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   margin: 0 0 10px;
-  color: #ffffff;
+  color: #ffff;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
 }
 
 .product-id {
@@ -127,18 +213,32 @@
 
 .action-button {
   width: 100%;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action-button mat-icon {
+  margin-right: 5px;
+  transition: transform 0.3s ease;
 }
 
+.action-button:hover mat-icon {
+  transform: rotate(10deg) scale(1.2);
+}
+
+
 .edit-button {
-  background: linear-gradient(45deg, #11fc19, #66bb6a);
+  background: linear-gradient(45deg, #000000, #000000);
 }
 
 .delete-button {
-  background: linear-gradient(45deg, #ff1404, #ef5350);
+  background: linear-gradient(45deg, #000000, #000000);
 }
-
+.delete-button:hover {
+  background: linear-gradient(45deg, #811313, #dc0000);
+}
 .action-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -170,4 +270,15 @@
   .add-button {
     width: 100%;
   }
+  .card-actions {
+    flex-direction: column;
+  }
+  .action-button {
+    margin-bottom: 10px;
+  }
 }
+.card-wrapper {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+

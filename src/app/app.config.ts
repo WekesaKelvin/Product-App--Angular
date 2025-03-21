@@ -10,7 +10,9 @@ import { ProductEffects } from './pages/store/product.effects';
 import { GlobalErrorHandler } from './core/global-error-handler';
 import { HttpErrorInterceptor } from './core/http-error.interceptor';
 import { ErrorHandler } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { JwtInterceptor } from './core/auth/jwt.interceptor';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({ product: productReducer }),
     provideState(productFeatureKey, productReducer), 
     provideEffects([ProductEffects]), 
+    // provideHttpClient(withInterceptors([JwtInterceptor])),
     provideStoreDevtools({ maxAge: 25 }) ,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
