@@ -29,7 +29,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  animations: [ // ✅ Correct place
+  animations: [ 
     trigger('fadeInOut', [
       state('void', style({ opacity: 0 })),
       transition(':enter', [

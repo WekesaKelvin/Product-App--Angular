@@ -58,7 +58,7 @@ body {
 
 
 h1, h2 {
-  color: #b3aa00;
+  color: #ffc107;
   letter-spacing: 1px;
   margin-bottom: 10px;
 }
@@ -81,6 +81,7 @@ h2 {
 
 .highlight {
   color: #ffc107;
+
 }
 
 
