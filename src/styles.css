@@ -1,23 +1,20 @@
-
-
-
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 :root {
-    --custom-primary: #17d509;  /* Deep Purple */
-    --custom-accent: #e60808;   /* Pink */
-  }
-  
-  .custom-primary {
-    background-color: var(--custom-primary) !important;
-    color: white !important;
-  }
-  
-  .custom-accent {
-    background-color: var(--custom-accent) !important;
-    color: white !important;
-  }
-  
+  --custom-primary: #17d509;
+  --custom-accent: #e60808;
+}
+
+.custom-primary {
+  background-color: var(--custom-primary) !important;
+  color: white !important;
+}
+
+.custom-accent {
+  background-color: var(--custom-accent) !important;
+  color: white !important;
+}

@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import * as ProductActions from '../store/product.actions';
-import { Product } from '../../product.model';
+import * as ProductActions from '../../../../Shared/store/product.actions';
+import { Product } from '../../../../product.model';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
-import { selectError, selectProductState } from '../store/product.selectors';
+import { selectError, selectProductState } from '../../../../Shared/store/product.selectors';
 import { take } from 'rxjs/operators';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../Shared/product.service';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,7 +27,7 @@ export class ProductFormComponent implements OnInit {
 
   storeService = inject(ProductService);
   dialog = inject(MatDialog);
-  
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -37,8 +37,8 @@ export class ProductFormComponent implements OnInit {
   ) {
     this.productForm = this.fb.group({
       id: [0],
-      name: ['',[Validators.required, Validators.minLength(2)]],
-      price: [0,[Validators.required, Validators.min(1)]]
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      price: [0, [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -62,7 +62,7 @@ export class ProductFormComponent implements OnInit {
 
     // Subscribes to the product state for success/failure handling
     this.store.pipe(select(selectProductState), take(1)).subscribe(state => {
-      console.log("Products: ",state.products)
+      console.log("Products: ", state.products)
       if (state.error) {
         this.openSnackBar(`Operation failed: ${state.error}`);
       } else if (this.productId && state.products.some(p => p.id === this.productId)) {
@@ -87,26 +87,26 @@ export class ProductFormComponent implements OnInit {
       this.productForm.markAllAsTouched(); // Show validation errors
       return; // Prevent submission
     }
-  
+
     const formValue = this.productForm.value;
-  
+
     if (this.productId) {
-      
+
       this.storeService.updateProduct(formValue).subscribe(() => {
         this.openSnackBar('Product updated successfully!');
-        this.productForm.reset({ id: 0, name: '', price: 0 }); 
-        this.router.navigate(['/list']); 
+        this.productForm.reset({ id: 0, name: '', price: 0 });
+        this.router.navigate(['/list']);
       });
     } else {
-      
+
       this.storeService.addProduct(formValue).subscribe(() => {
         this.openSnackBar('Product added successfully!');
-        this.productForm.reset({ id: 0, name: '', price: 0 }); 
-        this.router.navigate(['/list']); 
+        this.productForm.reset({ id: 0, name: '', price: 0 });
+        this.router.navigate(['/list']);
       });
     }
   }
-  
+
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, '', {

@@ -1,0 +1,38 @@
+<div>
+  <mat-toolbar color="primary" class="px-12 py-3 shadow-md">
+  
+    <!-- Left Side: Menu Icon + Title -->
+    <div class="flex items-center gap-4">
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a routerLink="/" class="text-xl font-semibold text-white">
+        Product Management System
+      </a>
+    </div>
+
+    <!-- Spacer -->
+    <div class="flex-grow"></div>
+
+    <!-- Right Side: User Dropdown Menu -->
+    <button [matMenuTriggerFor]="menu" class="flex gap-2 items-center text-white">
+      <div class="bg-blue-500 font-bold rounded-full w-10 h-10 flex justify-center items-center shadow-md">
+        {{ userDetail()?.fullName ? userDetail().fullName[0].toUpperCase() : '' }}
+      </div>
+      <mat-icon>expand_more</mat-icon>
+
+
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="/account" mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Manage Profile</span>
+      </button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

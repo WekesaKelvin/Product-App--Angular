@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../product.service';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as ProductActions from './product.actions';
@@ -12,7 +12,7 @@ export class ProductEffects {
   private router = inject(Router);
   private productService = inject(ProductService);
 
-  // Loads Products Effect
+
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProducts),
@@ -25,7 +25,7 @@ export class ProductEffects {
     )
   );
 
-  // Adds Product Effect
+
   addProduct$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.addProduct),
@@ -38,7 +38,7 @@ export class ProductEffects {
     )
   );
 
-  // Updates Product Effect
+
   updateProduct$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.updateProduct),
@@ -57,7 +57,7 @@ export class ProductEffects {
     )
   );
 
-  // Deletes Product Effect
+
   deleteProduct$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.deleteProduct),
@@ -70,7 +70,7 @@ export class ProductEffects {
     )
   );
 
-  // Navigation Effect
+
   navigationEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.addProductSuccess, ProductActions.updateProductSuccess),

@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, take } from 'rxjs';
-import { Product } from '../../product.model';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { ProductService } from '../../services/product.service';
+import { Product } from '../../../../product.model';
+import { ConfirmDialogComponent } from '../../../../confirm-dialog/confirm-dialog.component';
+import { ProductService } from '../../../../Shared/product.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -29,7 +29,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  animations: [ 
+  animations: [
     trigger('fadeInOut', [
       state('void', style({ opacity: 0 })),
       transition(':enter', [
@@ -41,9 +41,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
+
 export class ProductListComponent implements OnInit {
   products$!: Observable<Product[]>;
-  
+
   storeService = inject(ProductService);
   dialog = inject(MatDialog);
   snackBar = inject(MatSnackBar);

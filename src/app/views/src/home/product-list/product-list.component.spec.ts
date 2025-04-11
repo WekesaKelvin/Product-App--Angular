@@ -7,12 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductListComponent } from './product-list.component';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../Shared/product.service';
 import { of, throwError } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Product } from '../../product.model';
-// import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { Product } from '../../../../product.model';
+
 
 
 const mockProducts: Product[] = [
@@ -29,13 +29,12 @@ describe('ProductListComponent', () => {
   let router: Router;
 
   beforeEach(async () => {
-   
+
     mockProductService = {
       getProducts$: jasmine.createSpy().and.returnValue(of(mockProducts)),
       deleteProduct: jasmine.createSpy().and.returnValue(of({}))
     };
 
-    // Mock MatDialog with comprehensive MatDialogRef and internal state
     class MockMatDialog {
       private openDialogs: any[] = [];
 
@@ -67,7 +66,7 @@ describe('ProductListComponent', () => {
         MatButtonModule,
         MatIconModule,
         RouterTestingModule,
-        // ConfirmDialogComponent
+       
       ],
       providers: [
         { provide: ProductService, useValue: mockProductService },
@@ -111,7 +110,7 @@ describe('ProductListComponent', () => {
   //     'Close',
   //     jasmine.any(Object)
   //   );
-  
+
 
   // it('should handle deletion failure gracefully', fakeAsync(() => {
   //   mockMatDialog.open.and.returnValue({
@@ -129,13 +128,13 @@ describe('ProductListComponent', () => {
   //   );
   // }));
 
-//   it('should not delete product if user cancels confirmation', fakeAsync(() => {
-//     mockMatDialog.open.and.returnValue({
-//       afterClosed: () => of(false)
-//     });
-//     fixture.detectChanges();
-//     component.deleteProduct(1);
-//     tick();
-//     expect(mockProductService.deleteProduct).not.toHaveBeenCalled();
-//   }));
+  //   it('should not delete product if user cancels confirmation', fakeAsync(() => {
+  //     mockMatDialog.open.and.returnValue({
+  //       afterClosed: () => of(false)
+  //     });
+  //     fixture.detectChanges();
+  //     component.deleteProduct(1);
+  //     tick();
+  //     expect(mockProductService.deleteProduct).not.toHaveBeenCalled();
+  //   }));
 });

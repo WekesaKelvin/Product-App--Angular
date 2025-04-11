@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  userName: string = 'Kelvin Wekesa';
+  userName: string = '';
 }
 
 

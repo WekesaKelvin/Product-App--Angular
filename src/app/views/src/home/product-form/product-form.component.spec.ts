@@ -5,7 +5,7 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../Shared/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -62,7 +62,7 @@ describe('ProductFormComponent', () => {
     fixture.detectChanges();
   });
 
-  
+
 
 
   it('should create', () => {
@@ -90,7 +90,7 @@ describe('ProductFormComponent', () => {
     expect(component.productId).toBe(productId);
     expect(component.productForm.value).toEqual(product);
   }));
-  
+
 
   it('should validate form correctly', () => {
     component.productForm.patchValue({ id: 0, name: 'A', price: 0 });
@@ -143,24 +143,24 @@ describe('ProductFormComponent', () => {
     mockActivatedRoute.setParamMap({});
     fixture.detectChanges();
     tick();
-  
+
     const invalidData = { id: 0, name: 'A', price: 0 }; // invalid data
     component.productForm.patchValue(invalidData);
-  
-    component.onSubmit(); 
-    tick(); 
+
+    component.onSubmit();
+    tick();
     fixture.detectChanges();
-  
+
     // Expect product service methods NOT to be called
     // expect(mockProductService.addProduct).not.toHaveBeenCalled();
     // expect(mockProductService.updateProduct).not.toHaveBeenCalled();
-  
+
     // Also check form validity
     expect(component.productForm.invalid).toBeTrue();
     expect(component.productForm.get('name')?.hasError('minlength')).toBeTrue();
     expect(component.productForm.get('price')?.hasError('min')).toBeTrue();
   }));
-  
+
 
   it('should handle editing non-existent product', fakeAsync(() => {
     const nonExistentId = 999;
