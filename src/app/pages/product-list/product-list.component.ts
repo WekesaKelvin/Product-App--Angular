@@ -18,7 +18,6 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  // Inject MatDialog
   constructor(
     private productService: ProductService,
     private dialog: MatDialog
@@ -33,7 +32,6 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(productId: number): void {
-    // Open the custom confirm dialog
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',    
       data: {
@@ -42,14 +40,11 @@ export class ProductListComponent implements OnInit {
       }
     });
 
-    // After the dialog is closed, we get the result
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        // User clicked "Yes"
         this.productService.deleteProduct(productId);
         this.loadProducts();
       }
-      // If "No", nothing
     });
   }
 }
