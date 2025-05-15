@@ -20,10 +20,10 @@ export class ConfirmDialogComponent {
   constructor(private dialogRef: MatDialogRef<ConfirmDialogComponent>) {}
 
   onNoClick(): void {
-    this.dialogRef.close(false); // Pass back "false" to indicate cancellation
+    this.dialogRef.close(false); 
   }
 
   onYesClick(): void {
-    this.dialogRef.close(true);  // Pass back "true" to indicate confirmation
+    this.dialogRef.close(true); 
   }
 }
