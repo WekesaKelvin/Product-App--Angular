@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../product.model';
-
-// Import Angular Material Snackbar
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -23,7 +21,7 @@ export class ProductFormComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar  // <-- Inject MatSnackBar
+    private snackBar: MatSnackBar  
   ) {
     this.productForm = this.fb.group({
       id: [0],
@@ -36,7 +34,7 @@ export class ProductFormComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
-        this.productId = +idParam; // Convert to number
+        this.productId = +idParam; 
         const existingProduct = this.productService
           .getProducts()
           .find(p => p.id === this.productId);
@@ -58,23 +56,18 @@ export class ProductFormComponent implements OnInit {
     const formValue: Product = this.productForm.value;
 
     if (this.productId) {
-      // We have an ID => update the product
       this.productService.updateProduct(formValue);
       this.openSnackBar('Product successfully updated!');
     } else {
-      // No ID => add a new product
       this.productService.addProduct(formValue);
       this.openSnackBar('Product successfully added!');
     }
-
-    // Reset the form
     this.productForm.reset({ id: 0, name: '', price: 0 });
   }
 
-  // Reusable method to show a snackbar message
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {
-      duration: 3000,   // 3 seconds
+      duration: 3000,   
       horizontalPosition: 'center',
       verticalPosition: 'top'
     });
