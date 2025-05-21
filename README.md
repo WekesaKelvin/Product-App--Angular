@@ -9,7 +9,7 @@
 - **Angular 19+** – Cutting-edge frontend framework for building dynamic web applications  
 - **TypeScript** – Strictly typed superset of JavaScript for robust code  
 - **RxJS** – Reactive programming for efficient data handling  
-- **Jasmine & Karma** *(or your test framework)* – Unit testing for high-quality assurance
+- **Jasmine & Karma**  – Unit testing for high-quality assurance
 
 ---
 
