@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../product.model';
@@ -23,11 +23,11 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar  
   ) {
-    this.productForm = this.fb.group({
-      id: [0],
-      name: [''],
-      price: [0]
-    });
+   this.productForm = this.fb.group({
+  id: [0, [Validators.required, Validators.min(1)]],
+  name: ['', [Validators.required, Validators.minLength(3)]],
+  price: [0, [Validators.required, Validators.min(1)]]
+});
   }
 
   ngOnInit(): void {
@@ -52,18 +52,25 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    const formValue: Product = this.productForm.value;
-
-    if (this.productId) {
-      this.productService.updateProduct(formValue);
-      this.openSnackBar('Product successfully updated!');
-    } else {
-      this.productService.addProduct(formValue);
-      this.openSnackBar('Product successfully added!');
-    }
-    this.productForm.reset({ id: 0, name: '', price: 0 });
+onSubmit() {
+  if (this.productForm.invalid) {
+    this.productForm.markAllAsTouched(); 
+    this.openSnackBar('Please fill out all fields correctly.');
+    return;
   }
+
+  const formValue: Product = this.productForm.value;
+
+  if (this.productId) {
+    this.productService.updateProduct(formValue);
+    this.openSnackBar('Product successfully updated!');
+  } else {
+    this.productService.addProduct(formValue);
+    this.openSnackBar('Product successfully added!');
+  }
+
+  this.productForm.reset({ id: 0, name: '', price: 0 });
+}
 
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {

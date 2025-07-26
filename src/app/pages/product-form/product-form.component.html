@@ -3,16 +3,35 @@
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <h2>{{ productId ? 'Edit' : 'Add' }} Product</h2>
 
+      <!-- ID Field -->
       <label for="id">ID:</label>
       <input id="id" formControlName="id" placeholder="Enter Product ID" />
+      <div class="error" *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched">
+        <small *ngIf="productForm.get('id')?.errors?.['required']">ID is required.</small>
+        <small *ngIf="productForm.get('id')?.errors?.['min']">ID must be greater than 0.</small>
+      </div>
 
+      <!-- Name Field -->
       <label for="name">Name:</label>
       <input id="name" formControlName="name" placeholder="Enter Product Name" />
+      <div class="error" *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+        <small *ngIf="productForm.get('name')?.errors?.['required']">Name is required.</small>
+        <small *ngIf="productForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</small>
+      </div>
 
+      <!-- Price Field -->
       <label for="price">Price:</label>
       <input id="price" formControlName="price" placeholder="Enter Price" />
+      <div class="error" *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+        <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+        <small *ngIf="productForm.get('price')?.errors?.['min']">Price must be greater than 0.</small>
+      </div>
 
-      <button type="submit">{{ productId ? 'Update' : 'Add' }} Product</button>
+      <!-- Buttons -->
+      <button type="submit">
+        {{ productId ? 'Update' : 'Add' }} Product
+      </button>
+
       <button type="button" [routerLink]="['/list']" class="btn-primary">
         {{ productId ? 'Back to Product List' : 'Product List' }}
       </button>
