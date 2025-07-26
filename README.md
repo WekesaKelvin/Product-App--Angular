@@ -13,7 +13,7 @@
 
 ---
 
-## 📚 Table of Contents
+##  Table of Contents
 
 - [Overview](#-overview)  
 - [Why ProductList](#-why-productlist)  
@@ -25,7 +25,7 @@
 
 ---
 
-## 🔍 Overview
+## Overview
 
 **ProductList** is a modern, Angular-based product management system crafted with scalability, modularity, and performance in mind. Designed for frontend professionals, it enables rapid development of feature-rich interfaces while maintaining code quality and ease of maintenance.
 
@@ -33,17 +33,17 @@
 
 ## 💡 Why ProductList?
 
-ProductList is built to accelerate development while adhering to industry standards:
+ProductList is built to accelerate development while adhering to industry standards and mordern angular architecture:
 
-- **⚡ Rapid Development** – Powered by Angular’s robust CLI and tooling ecosystem  
-- **🧪 Comprehensive Testing** – Integrated test setup ensures code reliability and continuous improvement  
-- **🧩 Modular Architecture** – Clean separation of concerns using reusable components and services  
-- **🎯 Intuitive UI/UX** – Designed with user experience at the forefront  
+- ** Rapid Development** – Powered by Angular’s robust CLI and tooling ecosystem  
+- **Comprehensive Testing** – Integrated test setup ensures code reliability and continuous improvement  
+- ** Modular Architecture** – Clean separation of concerns using reusable components and services  
+- ** Intuitive UI/UX** – Designed with user experience at the forefront  
 - **Dependency Consistency** – `package-lock.json` maintains uniform environments across teams
 
 ---
 
-## 🛠️ Getting Started
+## 🧑🏽‍💻 Getting Started
 
 ### Prerequisites
 
